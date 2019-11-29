@@ -1,7 +1,9 @@
-<h1>Manufacturers:</h1>
+<h3>Fabricantes:</h1>
 
-<% @manufacturers.each do |manu| %>
+<% @manufacturers.each do |manufacturer| %>
   <ul>
-    <li><%= link_to manu.name, manufacturer_path(manu.id) %></li>
+    <li><%= link_to manufacturer.name, manufacturer %></li>
   </ul>
 <% end %>
+
+<%= link_to 'Registrar novo fabricante', new_manufacturer_path %>
