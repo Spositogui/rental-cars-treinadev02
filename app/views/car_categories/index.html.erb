@@ -1,0 +1,11 @@
+<h3>Categorias de Carro</h3>
+
+<% if !@car_categories.any? %>
+  <p>Nenhuma categoria de carro cadastrada no sistema.</p>
+<% end %>
+
+<ul>
+  <% @car_categories.each do |car_category| %>
+    <li><%= link_to car_category.name, car_category %></li>
+  <% end %>
+</ul>

@@ -4,8 +4,8 @@
   <p>Nenhuma filial cadastrada no sistema.</p>
 <% end %>
 
-<% @subsidiaries.each do |subsidiary| %>
-  <ul>
+<ul>
+  <% @subsidiaries.each do |subsidiary| %>
     <li><%= link_to  subsidiary.name, subsidiary %></li>
-  </ul>
-<% end %>
+  <% end %>
+</ul>
