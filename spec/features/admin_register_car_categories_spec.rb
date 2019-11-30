@@ -29,6 +29,6 @@ feature 'Admin register new Car Category' do
     fill_in 'Seguro de terceiros', with: ''
     click_on 'Enviar'
 
-    expect(page).to have_content('Nenhum campo pode permancer vazio!')
+    expect(page).to have_content('É necessário preencher todos os campos.')
   end
 end

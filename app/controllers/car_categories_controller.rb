@@ -16,7 +16,7 @@ class CarCategoriesController < ApplicationController
     if @car_category.save
       redirect_to @car_category
     else
-      flash[:alert] = 'Nenhum campo pode permancer vazio!'
+      flash[:alert] = 'É necessário preencher todos os campos.'
       render :new
     end
   end

@@ -1,0 +1,9 @@
+<%= form_with(model: @subsidiary, local: true) do |f| %>
+  <p><%= f.label :name, "Nome da Filial" %></p>
+  <p><%= f.text_field :name %></p>
+  <p><%= f.label :cnpj, "CNPJ" %></p>
+  <p><%= f.text_field :cnpj %></p>
+  <p><%= f.label :address, "Endereço" %></p>
+  <p><%= f.text_field :address %></p>
+  <p><%= f.submit 'Enviar' %></p>
+<% end %>
