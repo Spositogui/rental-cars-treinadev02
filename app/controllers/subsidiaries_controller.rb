@@ -21,6 +21,20 @@ class SubsidiariesController < ApplicationController
     end
   end
 
+  def edit
+    @subsidiary = Subsidiary.find(params[:id])
+  end
+
+  def update
+    @subsidiary = Subsidiary.new
+    if @subsidiary.update(subsidiary_params)
+      redirect_to @subsidiary
+    else
+      flash[:alert] = 'É necessário preencher todos os campos.'
+      render :edit
+    end
+  end
+
   private 
 
     def subsidiary_params
