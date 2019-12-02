@@ -34,6 +34,6 @@ feature 'Admin edit subsidiaries' do
     fill_in 'Endereço', with: ''
     click_on 'Enviar'
 
-    expect(page).to have_content('É necessário preencher todos os campos.')
+    expect(page).to have_content('Você deve corrigir os seguintes erros:')
   end
 end

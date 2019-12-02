@@ -26,6 +26,6 @@ feature 'Admin register a new subsidiary' do
     fill_in 'Endereço', with: 'Av. Ruby, nº 263'
     click_on 'Enviar'
 
-    expect(page).to have_content('É necessário preencher todos os campos.')
+    expect(page).to have_content('Você deve corrigir os seguintes erros:')
   end
 end

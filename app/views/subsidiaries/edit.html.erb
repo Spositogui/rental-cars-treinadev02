@@ -1,3 +1,3 @@
 <h3>Edição da filial: <%= @subsidiary.name %></h3>
-
-<%= render  "form" %>
+<%= render  "shared/errors", obj: @subsidiary %>
+<%= render  partial: "form", locals: { subsidiary: @subsidiary} %>

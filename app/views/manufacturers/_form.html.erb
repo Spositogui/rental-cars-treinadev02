@@ -1,12 +1,3 @@
-<% if @manufacturer.errors.any? %>
-<p>Você deve corrigir os seguintes erros:</p>
-  <ul>
-    <% @manufacturer.errors.full_messages.each do |msg|%>
-      <li><%= msg %></li>    
-    <% end %>
-  </ul>
-<% end %>
-
 <%= form_with model: @manufacturer, local: true do |f| %>
   <p><%= f.label :name, "Nome" %></p>
   <p><%= f.text_field :name %></p>
