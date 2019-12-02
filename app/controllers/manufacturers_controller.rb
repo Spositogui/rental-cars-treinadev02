@@ -11,6 +11,10 @@ class ManufacturersController < ApplicationController
     @manufacturer = Manufacturer.new
   end
 
+  def edit
+    @manufacturer = Manufacturer.find(params[:id])
+  end
+
   def create
     @manufacturer = Manufacturer.new(manufacturer_params)
     if @manufacturer.save
@@ -19,6 +23,17 @@ class ManufacturersController < ApplicationController
       render :new
     end
   end
+
+  def update
+    @manufacturer = Manufacturer.find(params[:id])
+    if @manufacturer.update(manufacturer_params)
+      flash[:notice] = 'Fabricante atualizado com sucesso.'
+      redirect_to @manufacturer
+    else
+      render :edit
+    end
+  end
+  
 
   private
     def manufacturer_params
