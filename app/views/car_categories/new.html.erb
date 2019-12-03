@@ -1,13 +1,3 @@
 <h3>Registro nova categoria de carro</h3>
-
-<%= form_with(model: @car_category, local: true) do |f| %>
-  <p><%= f.label :name, "Nome da categoria" %></p>
-  <p><%= f.text_field :name %></p>
-  <p><%= f.label :daily_rate, "Diária" %></p>
-  <p><%= f.number_field :daily_rate %></p>
-  <p><%= f.label :car_insurance, "Seguro" %></p>
-  <p><%= f.number_field :car_insurance %></p>
-  <p><%= f.label :third_party_insurance, "Seguro de terceiros" %></p>
-  <p><%= f.number_field :third_party_insurance %></p>
-  <p><%= f.submit 'Enviar' %></p>
-<% end %>
+<%= render  "shared/errors", obj: @car_category %>
+<%= render  "form", locals: {car_category: @car_category} %>

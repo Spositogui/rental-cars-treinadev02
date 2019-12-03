@@ -4,4 +4,6 @@
 <p>Seguro de terceiros: 
   <%= number_to_currency(@car_category.third_party_insurance) %>
 </p>
+
+<%= link_to  "Editar", edit_car_category_path(@car_category) %>
 <%= link_to  "Voltar", root_path %>
