@@ -1,0 +1,17 @@
+<h3>Registro de um novo modelo de carro</h3>
+
+<%= form_with( model:@car_model, local: true ) do |f| %>
+  <p><%= f.label :name, "Nome" %></p>
+  <p><%= f.text_field :name %></p>
+  <p><%= f.label :year, "Ano" %></p>
+  <p><%= f.number_field :year %></p>
+  <p><%= f.label :motorization, "Motorização" %></p>
+  <p><%= f.text_field :motorization %></p>
+  <p><%= f.label :fuel_type, "Combustível" %></p> 
+  <p><%= f.text_field :fuel_type %></p>
+  <p><%= f.label :manufacturer_id, "Fabricante" %></p>
+  <p><%= f.collection_select(:manufacturer_id, @manufacturers, :id, :name) %></p>
+  <p><%= f.label :car_category_id, "Categoria" %></p>
+  <p><%= f.collection_select(:car_category_id, @car_categories, :id, :name) %></p>
+  <p><%= f.submit 'Enviar' %></p>
+<% end %>

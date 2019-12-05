@@ -1,9 +1,14 @@
 <h2><%= @car_category.name %></h2>
-<p>Diária: <%= number_to_currency(@car_category.daily_rate) %></p>
-<p>Seguro: <%= number_to_currency(@car_category.car_insurance) %></p>
-<p>Seguro de terceiros: 
-  <%= number_to_currency(@car_category.third_party_insurance) %>
-</p>
 
+<dl>
+  <dt>Diária:</dt> 
+  <dd><%= number_to_currency(@car_category.daily_rate) %></dd>
+  <dt>Seguro:</dt> 
+  <dd><%= number_to_currency(@car_category.car_insurance) %></dd>
+  <dt>Seguro de terceiros:</dt>  
+  <dd><%= number_to_currency(@car_category.third_party_insurance) %></dd>
+</dl>
+  
 <%= link_to  "Editar", edit_car_category_path(@car_category) %>
 <%= link_to  "Voltar", root_path %>
+

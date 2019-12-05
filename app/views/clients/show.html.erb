@@ -1,5 +1,9 @@
 <h3><%= @client.name %></h3>
-<p>CPF: <%= @client.cpf %></p>
-<p>Email: <%= @client.email %></p>
+<dl>
+  <dt>CPF:</dt> 
+  <dd><%= @client.cpf %></dd>
+  <dt>Email:</dt> 
+  <dd><%= @client.email %></dd>
+</dl>
 
 <%= link_to  "Voltar", root_path %>
