@@ -1,3 +1,14 @@
+<nav>
+  <ul>
+    <% if user_signed_in? %>
+      Olá, <%= current_user.email %>
+      <li><%= link_to  "Sair", destroy_user_session_path, method: :delete %></li>
+    <% else %>      
+      <li><%= link_to  "Entrar", new_user_session_path %></li>
+    <% end %>
+  </ul>
+</nav>
+
 <p>Rental Cars</p>
 <p>Bem vindo ao sistema de gestão de locação</p>
 <ul>
