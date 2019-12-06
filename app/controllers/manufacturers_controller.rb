@@ -1,19 +1,19 @@
 class ManufacturersController < ApplicationController
+  before_action :authenticate_user!
+  before_action :authorize_admin
+  before_action :set_manufacturer, only: [:show, :edit, :update]
+ 
   def index
     @manufacturers = Manufacturer.all
   end
 
-  def show
-    @manufacturer = Manufacturer.find(params[:id])
-  end
+  def show; end
 
   def new
     @manufacturer = Manufacturer.new
   end
 
-  def edit
-    @manufacturer = Manufacturer.find(params[:id])
-  end
+  def edit; end
 
   def create
     @manufacturer = Manufacturer.new(manufacturer_params)
@@ -25,7 +25,6 @@ class ManufacturersController < ApplicationController
   end
 
   def update
-    @manufacturer = Manufacturer.find(params[:id])
     if @manufacturer.update(manufacturer_params)
       flash[:notice] = 'Fabricante atualizado com sucesso.'
       redirect_to @manufacturer
@@ -38,5 +37,16 @@ class ManufacturersController < ApplicationController
   private
     def manufacturer_params
       params.require(:manufacturer).permit(:name)
+    end
+
+    def set_manufacturer
+      @manufacturer = Manufacturer.find(params[:id])
+    end
+
+    def authorize_admin
+      unless current_user.admin?
+        flash[:notice] = 'Você não tem autorização para realizar esta ação'
+        redirect_to root_path 
+      end
     end
 end

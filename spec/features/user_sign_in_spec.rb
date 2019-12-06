@@ -14,7 +14,26 @@ feature 'user sign in' do
 
     expect(current_path).to eq(root_path)
     expect(page).to have_content("Olá, #{user.email}")
-    expect(page).to have_link("Sair")
+    expect(page).to have_content('Signed in successfully.')
+    expect(page).not_to have_link('Entrar')
+    expect(page).to have_link('Sair')
+  end
+
+  scenario 'and log out' do
+    user = User.create!(email: 'spositogui@example.com', password: 'abc45678')
+
+    visit new_user_session_path
+    fill_in 'Email', with: user.email
+    fill_in "Senha", with: user.password
+    within('form') do
+      click_on 'Entrar'
+    end
+    click_on 'Sair'
+
+    expect(current_path).to eq(root_path)
+    expect(page).to have_content('Signed out successfully.')
+    expect(page).to have_link('Entrar')
+    expect(page).not_to have_link('Sair')
   end
 
   scenario 'invalid email' do
