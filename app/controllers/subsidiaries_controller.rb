@@ -1,19 +1,19 @@
 class SubsidiariesController < ApplicationController
+  before_action :authenticate_user!
+  before_action :authorize_admin
+  before_action :set_subsidiary, only: [:show, :edit, :update, :destroy]
+  
   def index
     @subsidiaries = Subsidiary.all
   end
 
-  def show
-    @subsidiary = Subsidiary.find(params[:id])
-  end
+  def show; end
 
   def new
     @subsidiary = Subsidiary.new
   end
 
-  def edit
-    @subsidiary = Subsidiary.find(params[:id])
-  end
+  def edit; end
   
   def create
     @subsidiary = Subsidiary.new(subsidiary_params)
@@ -25,7 +25,6 @@ class SubsidiariesController < ApplicationController
   end
   
   def update
-    @subsidiary = Subsidiary.new
     if @subsidiary.update(subsidiary_params)
       redirect_to @subsidiary
     else
@@ -34,14 +33,16 @@ class SubsidiariesController < ApplicationController
   end
 
   def destroy
-    @subsidiary = Subsidiary.find(params[:id])
     @subsidiary.destroy
     redirect_to subsidiaries_path
   end
 
   private 
+  def subsidiary_params
+    params.require(:subsidiary).permit(:name, :cnpj, :address)
+  end
 
-    def subsidiary_params
-      params.require(:subsidiary).permit(:name, :cnpj, :address)
-    end
+  def set_subsidiary
+    @subsidiary = Subsidiary.find(params[:id])
+  end
 end

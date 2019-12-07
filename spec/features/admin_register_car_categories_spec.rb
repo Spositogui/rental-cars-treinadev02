@@ -2,6 +2,10 @@ require 'rails_helper'
 
 feature 'Admin register new Car Category' do
   scenario 'successfully' do
+    user = User.create!(email: 'test@gmail.com', password: '123456',
+                        role: :admin)
+
+    login_as(user, scope: :user)
     visit root_path
     click_on 'Categorias de Carro'
     click_on 'Registrar nova categoria de carro'
@@ -19,9 +23,11 @@ feature 'Admin register new Car Category' do
   end
 
   scenario 'failed' do
-    visit root_path
-    click_on 'Categorias de Carro'
-    click_on 'Registrar nova categoria de carro'
+    user = User.create!(email: 'test@gmail.com', password: '123456',
+                        role: :admin)
+
+    login_as(user, scope: :user)
+    visit new_car_category_path
 
     fill_in 'Nome da categoria', with: ''
     fill_in 'Diária', with: ''
@@ -30,5 +36,18 @@ feature 'Admin register new Car Category' do
     click_on 'Enviar'
 
     expect(page).to have_content('Você deve corrigir os seguintes erros:')
+  end
+
+  scenario 'must be logged in' do 
+    visit new_car_category_path
+
+    expect(current_path).to eq(new_user_session_path)
+  end
+
+  scenario 'must be legged in to see register button' do
+    visit car_categories_path
+
+    expect(page).not_to have_link('Registrar nova categoria de carro')
+    expect(current_path).to eq(new_user_session_path)
   end
 end

@@ -2,9 +2,12 @@ require 'rails_helper'
 
 feature 'Admin edits car categories' do
   scenario 'successfully' do
+    user = User.create!(email: 'test@gmail.com', password: '123456',
+                        role: :admin)
     CarCategory.create!(name: 'Categoria A', daily_rate: 250.00, car_insurance: 100.00, 
                         third_party_insurance: 50.00)
 
+    login_as(user, scope: :user)
     visit root_path
     click_on 'Categorias de Carro'
     click_on 'Categoria A'
@@ -22,9 +25,12 @@ feature 'Admin edits car categories' do
   end
 
   scenario 'must fill in all field' do
+    user = User.create!(email: 'test@gmail.com', password: '123456',
+                        role: :admin)
     CarCategory.create!(name: 'Categoria A', daily_rate: 250.00, car_insurance: 100.00, 
                         third_party_insurance: 50.00)
 
+    login_as(user, scope: :user)
     visit car_categories_path
     click_on 'Categoria A'
     click_on 'Editar'
@@ -38,11 +44,14 @@ feature 'Admin edits car categories' do
   end
 
   scenario 'name must be unique' do
+    user = User.create!(email: 'test@gmail.com', password: '123456',
+                        role: :admin)
     CarCategory.create!(name: 'Categoria A', daily_rate: 250.00, car_insurance: 100.00, 
                         third_party_insurance: 50.00)
     CarCategory.create!(name: 'Categoria B', daily_rate: 250.00, car_insurance: 100.00, 
                         third_party_insurance: 50.00)
 
+    login_as(user, scope: :user)
     visit car_categories_path
     click_on 'Categoria B'
     click_on 'Editar'
@@ -50,5 +59,24 @@ feature 'Admin edits car categories' do
     click_on 'Enviar'
 
     expect(page).to have_content('Você deve corrigir os seguintes erros:')
+  end
+
+  scenario 'must be log in' do
+    car_category = CarCategory.create!(name: 'Categoria A', daily_rate: 250.00, car_insurance: 100.00, 
+                        third_party_insurance: 50.00)
+
+    visit edit_car_category_path(car_category)
+
+    expect(current_path).to eq(new_user_session_path)
+  end
+
+  scenario 'must be logged in to see edit button' do 
+    car_category = CarCategory.create!(name: 'Categoria A', daily_rate: 250.00, car_insurance: 100.00, 
+                                      third_party_insurance: 50.00)
+
+    visit car_category_path(car_category)
+
+    expect(page).not_to have_link('Editar')
+    expect(current_path).to eq(new_user_session_path)
   end
 end
