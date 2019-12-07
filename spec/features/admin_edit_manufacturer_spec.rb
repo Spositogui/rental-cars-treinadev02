@@ -2,7 +2,8 @@ require 'rails_helper'
 
 feature 'Admin edits manufacturer' do
   scenario 'successfully' do
-    user = User.create!(email: 'teste@test.com', password: '123456')
+    user = User.create!(email: 'teste@test.com', password: '123456', 
+                        role: :admin)
     Manufacturer.create!(name: 'Fiat')
 
     login_as(user, scope: :user)
@@ -18,7 +19,8 @@ feature 'Admin edits manufacturer' do
   end
 
   scenario 'and must fill in all fields' do
-    user = User.create!(email: 'teste@test.com', password: '123456')
+    user = User.create!(email: 'teste@test.com', password: '123456', 
+                        role: :admin)
     Manufacturer.create!(name: 'Fiat')
 
     login_as(user, scope: :user)
@@ -33,7 +35,8 @@ feature 'Admin edits manufacturer' do
   end
 
   scenario 'name must be unique' do
-    user = User.create!(email: 'teste@test.com', password: '123456')
+    user = User.create!(email: 'teste@test.com', password: '123456', 
+                        role: :admin)
     Manufacturer.create!(name: 'Fiat')
     Manufacturer.create!(name: 'Honda')
     
@@ -46,5 +49,12 @@ feature 'Admin edits manufacturer' do
     click_on 'Enviar'
 
     expect(page).to have_content('Nome já está em uso')
+  end
+
+  scenario 'must be log in' do
+    manufacturer = Manufacturer.create!(name: 'Fabricante A')
+    
+    visit edit_manufacturer_path(manufacturer)
+    expect(current_path).to eq(new_user_session_path)
   end
 end

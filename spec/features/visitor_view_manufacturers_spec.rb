@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'Visitor view manufacturers' do
+xfeature 'Visitor view manufacturers' do
   scenario 'successfully' do
     user = User.create!(email: 'teste@test.com', password: '123456')
     Manufacturer.create(name: 'Fiat')

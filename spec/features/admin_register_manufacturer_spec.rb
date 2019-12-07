@@ -2,7 +2,8 @@ require 'rails_helper'
 
 feature 'Admin register manufacturer' do
   scenario 'successfully' do
-    user = User.create!(email: 'teste@test.com', password: '123456')
+    user = User.create!(email: 'teste@test.com', password: '123456',
+                        role: :admin)
 
     login_as(user, scope: :user)
     visit root_path
@@ -16,8 +17,9 @@ feature 'Admin register manufacturer' do
   end
 
   scenario 'and must fill in all fields' do
-    user = User.create!(email: 'teste@test.com', password: '123456')
-
+    user = User.create!(email: 'teste@test.com', password: '123456',
+                        role: :admin)
+                        
     login_as(user, scope: :user)
     visit new_manufacturer_path
     #fill_in 'Nome', with: ''
@@ -27,7 +29,8 @@ feature 'Admin register manufacturer' do
   end
 
   scenario 'and name must be unique' do
-    user = User.create!(email: 'teste@test.com', password: '123456')
+    user = User.create!(email: 'teste@test.com', password: '123456',
+                        role: :admin)
     Manufacturer.create!(name: 'Fiat')
     
     login_as(user, scope: :user)

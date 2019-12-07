@@ -32,21 +32,13 @@ class ManufacturersController < ApplicationController
       render :edit
     end
   end
-  
 
   private
-    def manufacturer_params
-      params.require(:manufacturer).permit(:name)
-    end
+  def manufacturer_params
+    params.require(:manufacturer).permit(:name)
+  end
 
-    def set_manufacturer
-      @manufacturer = Manufacturer.find(params[:id])
-    end
-
-    def authorize_admin
-      unless current_user.admin?
-        flash[:notice] = 'Você não tem autorização para realizar esta ação'
-        redirect_to root_path 
-      end
-    end
+  def set_manufacturer
+    @manufacturer = Manufacturer.find(params[:id])
+  end
 end
