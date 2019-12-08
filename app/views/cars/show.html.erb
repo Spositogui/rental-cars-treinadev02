@@ -1,0 +1,16 @@
+<h3>Informações do carro:</h3>
+
+<dl>
+  <dt>Modelo de carro:</dt>
+  <dd><%= @car.car_model.name  %></dd>
+  <dt>Placa:</dt>
+  <dd><%= @car.license_plate %></dd>
+  <dt>Cor:</dt>
+  <dd><%= @car.color %></dd>
+  <dt>Quilometragem:</dt>
+  <dd><%= @car.mileage %></dd>
+  <dt>Filial:</dt>
+  <dd><%= @car.subsidiary.name %></dd>
+</dl>
+
+<%= link_to  "Voltar", root_path %>
