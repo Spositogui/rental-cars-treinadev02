@@ -4,6 +4,6 @@ class Car < ApplicationRecord
   validates :license_plate, presence: true, uniqueness: true,
                             format: {
                               with: /[a-zA-Z]{3}\-\d{4}/, 
-                              message: 'Insira uma placa válida no formato: AAA-0000'}
+                              message: 'Insira uma placa válida no seguinte formato: AAA-0000'}
   validates :color, :mileage, presence: true
 end

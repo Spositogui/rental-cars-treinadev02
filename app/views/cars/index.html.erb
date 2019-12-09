@@ -1,7 +1,10 @@
 <h3>Carros registrados</h3>
 <ul>
   <% @cars.each do |car| %>
-    <li></li>
+      <li>
+        <%= link_to  car.car_model.name, car %>
+        <span><%= car.license_plate %></span>
+      </li>
   <% end %>
 </ul>
 
