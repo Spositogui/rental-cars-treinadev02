@@ -1,6 +1,7 @@
 <nav>
   <ul>
     <% if user_signed_in? %>
+      <!--if user.admin?-->
       Olá, <%= current_user.email %>
       <li><%= link_to 'Fabricantes', manufacturers_path %></li>
       <li><%= link_to  "Filiais", subsidiaries_path %></li>
@@ -8,6 +9,7 @@
       <li><%= link_to  "Clientes", clients_path %></li>
       <li><%= link_to  "Modelos de Carro", car_models_path %></li>
       <li><%= link_to  "Carros", cars_path %></li>
+      <li><%= link_to 'Locações', rentals_path %></li>
       <li><%= link_to  "Sair", destroy_user_session_path, method: :delete %></li>
     <% else %>      
       <li><%= link_to  "Entrar", new_user_session_path %></li>

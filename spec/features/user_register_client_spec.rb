@@ -31,7 +31,7 @@ feature 'User register a customer' do
   end
 
   scenario 'cpf must be unique' do
-    Client.create!(name: 'Alan Turing', cpf: '000.000.000-00', 
+    Client.create!(name: 'Alan Turing', document: '000.000.000-00', 
                   email: 'alan@gmail.com')
     user = User.create!(email: 'test@test.com', password: '132564',
                         role: :admin)
@@ -49,7 +49,7 @@ feature 'User register a customer' do
   scenario 'email must be unique' do
     user = User.create!(email: 'test@test.com', password: '132564',
                         role: :admin)
-    Client.create!(name: 'Alan Turing', cpf: '000.000.000-00', 
+    Client.create!(name: 'Alan Turing', document: '000.000.000-00', 
                   email: 'alan@gmail.com')
         
     login_as(user, scope: :user)

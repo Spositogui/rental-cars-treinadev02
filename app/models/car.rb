@@ -6,4 +6,5 @@ class Car < ApplicationRecord
                               with: /[a-zA-Z]{3}\-\d{4}/, 
                               message: 'Insira uma placa válida no seguinte formato: AAA-0000'}
   validates :color, :mileage, presence: true
+  #TODO validates mileage >= 0
 end

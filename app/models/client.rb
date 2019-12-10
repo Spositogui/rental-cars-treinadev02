@@ -1,9 +1,9 @@
 class Client < ApplicationRecord
   validates :name, presence: true
-  validates :cpf, presence: true, uniqueness: true
+  validates :document, presence: true, uniqueness: true
   validates :email, presence: true, uniqueness: true
 
-  def client_info
-    "Nome: #{name}, CPF: #{cpf}"
+  def description
+    "#{name} - #{document}"
   end
 end

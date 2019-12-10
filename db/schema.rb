@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_08_004858) do
+ActiveRecord::Schema.define(version: 2019_12_10_010038) do
 
   create_table "car_categories", force: :cascade do |t|
     t.string "name"
@@ -48,7 +48,7 @@ ActiveRecord::Schema.define(version: 2019_12_08_004858) do
 
   create_table "clients", force: :cascade do |t|
     t.string "name"
-    t.string "cpf"
+    t.string "document"
     t.string "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -58,6 +58,18 @@ ActiveRecord::Schema.define(version: 2019_12_08_004858) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "rentals", force: :cascade do |t|
+    t.date "start_date"
+    t.date "end_date"
+    t.integer "client_id"
+    t.integer "car_category_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "reservation_code"
+    t.index ["car_category_id"], name: "index_rentals_on_car_category_id"
+    t.index ["client_id"], name: "index_rentals_on_client_id"
   end
 
   create_table "subsidiaries", force: :cascade do |t|
