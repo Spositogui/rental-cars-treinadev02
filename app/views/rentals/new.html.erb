@@ -1,3 +1,7 @@
+<h3>Nova Locação</h3>
+
+<%= render  "shared/errors", obj: @rental %>
+
 <%= form_with(model: @rental, local: true) do |f| %>
   <p><%= f.label :start_date, "Data de inicio" %></p>
   <p><%= f.date_field :start_date %></p>
