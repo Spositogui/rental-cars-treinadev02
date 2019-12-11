@@ -1,7 +1,22 @@
-<%= link_to  "Agendar locação", new_rental_path %>
+<h3>Locações</h3>
+<p><%= link_to  "Agendar locação", new_rental_path %></p>
 
 <%= form_with(url:search_rentals_path, local: true, method: :get) do %>
   <%= label_tag(:q, 'Código') %>
   <%= text_field_tag :q %>
   <%= submit_tag 'Buscar' %>
 <% end %>
+
+<% if @search_result.nil? %>
+  <ul>
+    <% @rentals.each do |rental| %>
+      <li><%= link_to rental.reservation_code, rental %></li>  
+    <% end %>
+  </ul>
+<% else %>
+  <li><%= link_to @search_result.reservation_code, @search_result %></li>
+<% end %>
+
+  
+
+

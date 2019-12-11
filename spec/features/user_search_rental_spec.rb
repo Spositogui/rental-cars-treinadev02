@@ -14,7 +14,7 @@ feature 'User search rental' do
                             reservation_code: 'ABC1234')
     other_rental = Rental.create!(client: client, car_category: car_category,
                             start_date: 1.day.from_now, end_date: 2.days.from_now,
-                            reservation_code: 'ABC1234')
+                            reservation_code: 'ABC4321')
 
     login_as(user, scope: :user)
     visit root_path

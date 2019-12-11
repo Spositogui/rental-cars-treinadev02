@@ -1,5 +1,7 @@
 class RentalsController < ApplicationController
   def index
+    @rentals = Rental.all
+    @search_result = nil
   end
   
   def show
@@ -22,5 +24,10 @@ class RentalsController < ApplicationController
       @car_categories = CarCategory.all
       render :new
     end
+  end
+
+  def search
+    @search_result = Rental.find_by reservation_code: params[:q]
+    render :index
   end
 end
