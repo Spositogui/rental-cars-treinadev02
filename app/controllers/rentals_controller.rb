@@ -3,11 +3,12 @@ class RentalsController < ApplicationController
 
   def index
     @rentals = Rental.all
-    @search_result = nil
   end
   
   def show
     @rental = Rental.find(params[:id])
+    @cars =  @rental.car_category.cars
+    #same @cars = Car.joins(:car_model).where(car_models: {car_category: @rental.category})
   end
 
   def new
@@ -29,7 +30,17 @@ class RentalsController < ApplicationController
   end
 
   def search
-    @search_result = Rental.find_by reservation_code: params[:q]
+    @rentals = Rental.where('reservation_code like ?', "%#{params[:q]}%")
     render :index
+  end
+  
+  def start
+    @rental = Rental.find(params[:id])
+    @rental.in_progress!
+
+    @car = Car.find(params[:rental][:car_id])
+    @car.unavailable!
+    @rental.create_car_rental(car: @car, price: @car.price)
+    redirect_to @rental, notice: 'Locação iniciada com sucesso'
   end
 end

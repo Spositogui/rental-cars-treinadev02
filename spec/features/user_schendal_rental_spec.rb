@@ -26,6 +26,7 @@ feature 'user schedule rental' do
     expect(page).to have_content(client.document)
     expect(page).to have_content('Categoria')
     expect(page).to have_content(car_category.name)
+    expect(page).to have_selector(banana_path, 'Iniciar locação')
   end
 
   scenario 'and must fill in all fields' do
